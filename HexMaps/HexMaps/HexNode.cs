@@ -7,18 +7,43 @@ using System.Threading.Tasks;
 
 namespace HexMaps
 {
-    class HexNode
+    public class HexNode
     {
         //These can hold more specialized fields later. Currently a proof of concept. 
         [JsonProperty]
         private string hexName;
         [JsonProperty]
         private string comments;
+        [JsonProperty]
+        private Tuple<int,int> pos;//position of the node. its index
 
-        public HexNode(string name, string comment)
+        //Default values for empty hexes
+        public static string defaultName = "This hex has no name";
+        public static string defaultComment = "There is nothing of Interest here";
+
+        /// <summary>
+        /// Getter for comments
+        /// </summary>
+        /// <returns></returns>
+      public string getComment()
+        {
+            return comments;
+        }
+
+        /// <summary>
+        /// Getter for name
+        /// </summary>
+        /// <returns></returns>
+        public string getName()
+        {
+            return hexName;
+        }
+
+        public HexNode(string name, string comment, int row, int col)
         {
             hexName = name;
             comments = comment;
+            pos = new Tuple<int, int>(row, col);
         }
 
         /// <summary>
@@ -46,6 +71,15 @@ namespace HexMaps
         public void setName(string name)
         {
             hexName = name;
+        }
+
+        /// <summary>
+        /// Return the uid tuple for identification
+        /// </summary>
+        /// <returns>uid tuple(int,int)</in></returns>
+        public Tuple<int,int> getPos()
+        {
+            return pos;
         }
     }
 }
