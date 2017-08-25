@@ -16,7 +16,11 @@ namespace HexMaps
 {
     public partial class Form1 : Form
     {
-        List<HexNode> nodes;
+        List<HexNode> nodes;//Temp holding for hexes will prompt later and create a 2d array        
+
+        /*  The buttons and text fields are all temp and just gave me a way to add data.
+            The first field is name the second is comment. The button adds a new node with the data to the list.            
+        */
 
         public Form1()
         {
@@ -25,11 +29,15 @@ namespace HexMaps
 
         private void button1_Click(object sender, EventArgs e)
         {
-            addNode(textBox1.Text, textBox2.Text);
-            Debug.WriteLine(nodes.Count);
+            addNode(textBox1.Text, textBox2.Text);            
         }
 
 
+        /// <summary>
+        /// Adds a new hex with the specified data to the list.
+        /// </summary>
+        /// <param name="name">Name of the hex</param>
+        /// <param name="comment">Comments for the hex</param>
         private void addNode(string name, string comment)
         {
             nodes.Add(new HexNode(name, comment));
@@ -37,16 +45,25 @@ namespace HexMaps
 
      
         private void Form1_Load(object sender, EventArgs e)
-        {
-           
+        {           
             nodes = new List<HexNode>();
         }
 
+        /// <summary>
+        /// Serialize a hexNode
+        /// </summary>
+        /// <param name="node">The node to serialize</param>
+        /// <returns>The Json string for the object</returns>
         private string serialize(HexNode node)
         {
             return JsonConvert.SerializeObject(node);           
         }
 
+        /// <summary>
+        /// deserializes a hexNode json string
+        /// </summary>
+        /// <param name="text">the json string of a hex</param>
+        /// <returns>The hex object of the string</returns>
         private HexNode deserialize(string text)
         {            
             Debug.WriteLine(text);
@@ -54,7 +71,7 @@ namespace HexMaps
             {
                 HexNode converted = JsonConvert.DeserializeObject<HexNode>(text);
                 return converted;
-            }catch
+            }catch            
             {
                 MessageBox.Show("Could not deserialize object");
                 return new HexNode("Error", "There was an error reading this node");
@@ -72,25 +89,29 @@ namespace HexMaps
         {
             saveMap();
         }
+
+        /// <summary>
+        /// Save the map file
+        /// </summary>
         public void saveMap()
         {
            
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
 
-            saveFileDialog1.Filter = "map files (*.map)|*.map";
+            saveFileDialog1.Filter = "map files (*.map)|*.map";//text filter for map files
             saveFileDialog1.FilterIndex = 2;
             saveFileDialog1.RestoreDirectory = true;
 
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)//show dialog and proceed if a file was chosen
             {
                 try
                 {
 
-                    if ((saveFileDialog1.FileName) != null)
+                    if ((saveFileDialog1.FileName) != null)//if we have a valid file
                     {
-                        using (StreamWriter sw = new StreamWriter(saveFileDialog1.FileName))
+                        using (StreamWriter sw = new StreamWriter(saveFileDialog1.FileName))//open a stream 
                         {
-                            foreach (HexNode current in nodes)
+                            foreach (HexNode current in nodes)//write each hex followed by a newline to the stream
                             {
                                 sw.Write(serialize(current)+'\n');
                             }
@@ -108,6 +129,9 @@ namespace HexMaps
 
             }
         }
+        /// <summary>
+        /// Open a map file from disk
+        /// </summary>
         public void openMap()
         {           
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -118,15 +142,15 @@ namespace HexMaps
             openFileDialog1.FilterIndex = 2;
             openFileDialog1.RestoreDirectory = true;
 
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)//show dialog and proceed if a file was chosen
             {
                 try
                 {
-                    if ((openFileDialog1.FileName) != null)
+                    if ((openFileDialog1.FileName) != null)//if we have a valid file
                     {
-                        using (StreamReader sr = new StreamReader(openFileDialog1.FileName))
+                        using (StreamReader sr = new StreamReader(openFileDialog1.FileName))//open a stream
                         {
-                            file = sr.ReadToEnd();
+                            file = sr.ReadToEnd();//read the entire contents into a string
                         }
                          
 
@@ -139,11 +163,11 @@ namespace HexMaps
                 }
             }
 
-            foreach (string current in file.Split('\n'))
+            foreach (string current in file.Split('\n'))//split the string into one for each hex (by neline)
             {
                 if(current !="")
                 {
-                    nodes.Add(deserialize(current));
+                    nodes.Add(deserialize(current));//add the deserialized nodes into the list
                 }
             
             }
