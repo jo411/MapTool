@@ -18,7 +18,7 @@ namespace HexMaps
         private Tuple<int,int> pos;//position of the node. its index
 
         //Default values for empty hexes
-        public static string defaultName = "This hex has no name";
+        public static string defaultName = "Unnamed Hex";
         public static string defaultComment = "There is nothing of Interest here";
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace HexMaps
 
         public HexNode(string name, string comment, int row, int col)
         {
-            hexName = name;
+            hexName = name == "" ?defaultName:name;
             comments = comment;
             pos = new Tuple<int, int>(row, col);
         }
