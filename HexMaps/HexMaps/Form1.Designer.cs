@@ -30,9 +30,9 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtHexComments = new System.Windows.Forms.TextBox();
             this.txtColSearchInput = new System.Windows.Forms.TextBox();
             this.btnHexSearch = new System.Windows.Forms.Button();
@@ -76,26 +76,26 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // newMapToolStripMenuItem
+            // 
+            this.newMapToolStripMenuItem.Name = "newMapToolStripMenuItem";
+            this.newMapToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.newMapToolStripMenuItem.Text = "New Map";
+            this.newMapToolStripMenuItem.Click += new System.EventHandler(this.newMapToolStripMenuItem_Click);
+            // 
             // openMapToolStripMenuItem
             // 
             this.openMapToolStripMenuItem.Name = "openMapToolStripMenuItem";
-            this.openMapToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openMapToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.openMapToolStripMenuItem.Text = "Open Map";
             this.openMapToolStripMenuItem.Click += new System.EventHandler(this.openMapToolStripMenuItem_Click);
             // 
             // saveMapToolStripMenuItem
             // 
             this.saveMapToolStripMenuItem.Name = "saveMapToolStripMenuItem";
-            this.saveMapToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveMapToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.saveMapToolStripMenuItem.Text = "Save Map";
             this.saveMapToolStripMenuItem.Click += new System.EventHandler(this.saveMapToolStripMenuItem_Click);
-            // 
-            // newMapToolStripMenuItem
-            // 
-            this.newMapToolStripMenuItem.Name = "newMapToolStripMenuItem";
-            this.newMapToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.newMapToolStripMenuItem.Text = "New Map";
-            this.newMapToolStripMenuItem.Click += new System.EventHandler(this.newMapToolStripMenuItem_Click);
             // 
             // txtHexComments
             // 

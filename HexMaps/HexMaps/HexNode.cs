@@ -16,6 +16,8 @@ namespace HexMaps
         private string comments;
         [JsonProperty]
         private Tuple<int,int> pos;//position of the node. its index
+        [JsonProperty]
+        private List<ConnectionNode> connections;
 
         //Default values for empty hexes
         public static string defaultName = "Unnamed Hex";
@@ -80,6 +82,21 @@ namespace HexMaps
         public Tuple<int,int> getPos()
         {
             return pos;
+        }
+
+        /// <summary>
+        /// Adds a connection to the specified node
+        /// </summary>
+        /// <param name="connectedTo">The Hexnode to connect to</param>
+        /// <param name="biDirectional">Whether both nodes should have a refernce of this connection</param>
+        /// <param name="description">Description string of the connection</param>
+        public void addConnection(HexNode connectedTo,Boolean biDirectional,string description)
+        {
+            this.connections.Add(new ConnectionNode(connectedTo, description));
+            if(biDirectional)
+            {
+                connectedTo.addConnection(this, false, description);
+            }
         }
     }
 }
