@@ -20,9 +20,12 @@ namespace HexMaps
         HexGrid map;//class for tracking the world state
         HexNode currentSelection;//currently active hex (null if there is no info for one stored)
         Tuple<int, int> currentTempPos;//because empty hexes are null we need to store the current position to allow adjacent movement
+
+        map mapForm;
         public Form1()
         {
             InitializeComponent();
+            mapForm = new map();
         }
 
 
@@ -401,6 +404,11 @@ namespace HexMaps
             }
             
 
+        }
+
+        private void mapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mapForm.initAndShow(map);
         }
     }
 }

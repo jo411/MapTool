@@ -11,12 +11,12 @@ namespace HexMaps
     /// <summary>
     /// Organizes sets of hexes into a grid. Could later be used to convert from cartesian to hexical coordinates if the system needs to change without needing to update the front end logic. 
     /// </summary>
-    class HexGrid
+    public class HexGrid
     {
         [JsonProperty]
-        private int width;//width of the map (number of hexes)
+        public int width;//width of the map (number of hexes)
         [JsonProperty]
-        private int height;//height of the map (number of hexes)
+        public int height;//height of the map (number of hexes)
         [JsonProperty]
         private List<HexNode> hexList;//a list of the hexe positions with information in them used for efficient saving
 
