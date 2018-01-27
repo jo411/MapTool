@@ -31,6 +31,7 @@ namespace HexMaps
 
         public void initAndShow(HexGrid map)
         {
+            if (map == null) return;
             this.hexMap = map;
             this.Show();
         }
